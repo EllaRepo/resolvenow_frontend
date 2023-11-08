@@ -8,8 +8,9 @@ const swal = require('sweetalert2')
 function UserLandingPage() {
 
     const [res, setRes] = useState("")
+    const [isComboReady, setComboReady] = useState(0)
     const [regData, setregData] = useState([])
-    const [ctypes, setCtypes] = useState([])
+    const [ctypes, setCtypes] = useState(['Road', 'Water', 'Electricity', 'Garbage'])
     const [usrComplaints, setUsrComplaints] = useState({})
     const [usrCmptFetched, setusrCmptFetched] = useState(0)
     const [showTab, setShowTab] = useState(0)
@@ -30,7 +31,7 @@ function UserLandingPage() {
     if (token) {
         const decode = jwtDecode(token)
         var email = decode.email
-        //var user_id = decode.user_id
+        var user_id = decode.user_id
         var username = decode.username
         var full_name = decode.full_name
         var phone_no = decode.phone
@@ -85,6 +86,7 @@ function UserLandingPage() {
             try {
                 const response = await api.get("/region/")
                 setregData(response.data.response)
+                setComboReady(isComboReady + 1)
             } catch (error) {
                 setRes("Something went wrong")
             }
@@ -93,7 +95,7 @@ function UserLandingPage() {
             try {
                 const response = await api.get("/ctypes/")
                 setCtypes(response.data.response)
-                console.log(ctypes)
+                setComboReady(isComboReady + 1)
             } catch (error) {
                 setRes("Something went wrong")
             }
@@ -207,9 +209,11 @@ function UserLandingPage() {
                                                             <p className="text-bg-dark">Select Region</p>
                                                         </option>
                                                         {
-                                                            regData.map((reg) => (
-                                                                <option value="{reg}">{reg}</option>
-                                                            ))
+                                                            (isComboReady === 2) && (
+                                                                regData.map((reg) => (
+                                                                    <option value="{reg}">{reg}</option>
+                                                                ))
+                                                            )
                                                         }
                                                     </select>
                                                 </div>
@@ -221,10 +225,13 @@ function UserLandingPage() {
                                                         required
                                                     >
                                                         <option value="default" selected>Select Complaint type</option>
-                                                        <option value="Road" >Road</option>
-                                                        <option value="Water">Water</option>
-                                                        <option value="Electricity">Electricity</option>
-                                                        <option value="Garbage">Garbage</option>
+                                                        {
+                                                            (isComboReady === 2) && (
+                                                                ctypes.map((ctype) => (
+                                                                    <option value="{ctype}">{ctype}</option>
+                                                                ))
+                                                            )
+                                                        }
                                                     </select>
                                                 </div>
                                                 <div className="form-outline mb-4">
