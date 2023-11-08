@@ -9,7 +9,7 @@ function UserLandingPage() {
 
     const [res, setRes] = useState("")
     const [regData, setregData] = useState([])
-    const [ctypes, setCtypes] = useState(['Road', 'Water', 'Electricity', 'Garbage'])
+    const [ctypes, setCtypes] = useState([])
     const [usrComplaints, setUsrComplaints] = useState({})
     const [usrCmptFetched, setusrCmptFetched] = useState(0)
     const [showTab, setShowTab] = useState(0)
@@ -30,7 +30,7 @@ function UserLandingPage() {
     if (token) {
         const decode = jwtDecode(token)
         var email = decode.email
-        var user_id = decode.user_id
+        //var user_id = decode.user_id
         var username = decode.username
         var full_name = decode.full_name
         var phone_no = decode.phone
@@ -93,6 +93,7 @@ function UserLandingPage() {
             try {
                 const response = await api.get("/ctypes/")
                 setCtypes(response.data.response)
+                console.log(ctypes)
             } catch (error) {
                 setRes("Something went wrong")
             }
