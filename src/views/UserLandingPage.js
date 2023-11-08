@@ -273,7 +273,7 @@ function UserLandingPage() {
                                 </div>
                                 <div className={showTab === 2 ? "tab-pane fade show active" : "tab-pane fade show"}>
                                     {
-                                        (usrComplaints.length() > 0) && (
+                                        (usrComplaints.length > 0) && (
                                             <section className="usr_comps">
 
                                                 {
