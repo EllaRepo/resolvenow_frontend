@@ -9,7 +9,7 @@ function UserLandingPage() {
 
     const [res, setRes] = useState("")
     const [regData, setregData] = useState([])
-    const [ctypes, setCtypes] = useState([])
+    const [ctypes, setCtypes] = useState(['Road', 'Water', 'Electricity', 'Garbage'])
     const [usrComplaints, setUsrComplaints] = useState({})
     const [usrCmptFetched, setusrCmptFetched] = useState(0)
     const [showTab, setShowTab] = useState(0)
