@@ -220,11 +220,10 @@ function UserLandingPage() {
                                                         required
                                                     >
                                                         <option value="default" selected>Select Complaint type</option>
-                                                        {
-                                                            ctypes.map((ctype) => (
-                                                                <option value="{ctype}">{ctype}</option>
-                                                            ))
-                                                        }
+                                                        <option value="Road" >Road</option>
+                                                        <option value="Water">Water</option>
+                                                        <option value="Electricity">Electricity</option>
+                                                        <option value="Garbage">Garbage</option>
                                                     </select>
                                                 </div>
                                                 <div className="form-outline mb-4">
