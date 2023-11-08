@@ -61,6 +61,7 @@ function UserLandingPage() {
 
     const fetchUserComplaints = async () => {
         try {
+            setUsrComplaints([])
             const response = await api.get(`/complaints/${email}`)
             setUsrComplaints(response.data.response)
             setusrCmptFetched(1)
