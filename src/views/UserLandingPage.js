@@ -273,7 +273,7 @@ function UserLandingPage() {
                                 </div>
                                 <div className={showTab === 2 ? "tab-pane fade show active" : "tab-pane fade show"}>
                                     {
-                                        usrCmptFetched && (
+                                        (usrCmptFetched == 1) && (
                                             <section className="usr_comps">
 
                                                 {
